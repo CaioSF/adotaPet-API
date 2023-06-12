@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adoção de Animais</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">Adoção de Animais</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link" th:href="@{/}">Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link"  th:href="@{/animal/listagem}">Animais Disponíveis<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/animal}">Cadastrar Animais</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/animais">Adotar Animal</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <h1>Listagem de Animais</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Idade</th>
+            <th>Espécie</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="animal : ${animais}">
+            <td th:text="${animal.nome}"></td>
+            <td th:text="${animal.descricao}"></td>
+            <td th:text="${animal.idade}"></td>
+            <td th:text="${animal.especie}"></td>
+            <td>
+                <a th:href="@{/animal/{id}/apagar(id=${animal.id})}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Deseja realmente apagar o cachorro?');">
+                    Apagar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+</body>
+</html>
